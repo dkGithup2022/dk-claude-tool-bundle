@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# package 명령. 레포의 uv 환경에서 돈다. 실행 데이터는 지금 폴더의 .package/
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+exec uv run --quiet --project "$ROOT" python -m package "$@"

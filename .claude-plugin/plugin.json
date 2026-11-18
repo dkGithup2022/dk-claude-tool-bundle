@@ -1,0 +1,8 @@
+{
+  "name": "dk-claude-tool-bundle",
+  "version": "0.1.0",
+  "description": "Claude 와 연동해서 쓰는 로컬 도구(Python CLI + Claude 플러그인)를 만드는 스킬 모음. 워크플로 실행 틀(engine)을 가진 프로젝트를 만들고, 그 위에 워크플로·모델·포트를 정해진 형식으로 추가한다.",
+  "author": {"name": "dankim0124"},
+  "license": "MIT",
+  "keywords": ["claude-code", "workflow", "cli", "plugin"]
+}

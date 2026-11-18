@@ -1,0 +1,10 @@
+# 파이썬과 검사 도구가 만드는 파일
+__pycache__/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.import_linter_cache/
+
+# 실행 데이터 (세션, 실행 상태, 단계 결과). 실행한 사람의 로컬 기록이라 저장소에 올리지 않는다
+.package/

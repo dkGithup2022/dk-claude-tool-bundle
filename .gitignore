@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+.DS_Store
+
+# 설계 기록: 로컬에만 둔다
+docs/dk-py-bundle-analysis.md
+docs/task-output-design.md
+docs/workflow-skill-design.md

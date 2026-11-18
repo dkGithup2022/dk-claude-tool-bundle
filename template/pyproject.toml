@@ -1,0 +1,67 @@
+[project]
+name = "package"
+version = "0.1.0"
+description = "Claude 와 연동해서 쓰는 로컬 도구"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11", "import-linter>=2.1"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/package"]
+
+[tool.ruff]
+extend-exclude = ["docs"]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.importlinter]
+root_package = "package"
+
+[[tool.importlinter.contracts]]
+name = "계층: entry → workflow → (engine, port) → (claude_utils, model) → common"
+type = "layers"
+layers = [
+    "package.entry",
+    "package.workflow",
+    "package.engine | package.port",
+    "package.claude_utils | package.model",
+    "package.common",
+]
+
+[[tool.importlinter.contracts]]
+name = "engine 은 프로젝트 코드(workflow, model, port)를 모른다"
+type = "forbidden"
+source_modules = ["package.engine"]
+forbidden_modules = ["package.workflow", "package.model", "package.port", "package.entry"]
+
+[[tool.importlinter.contracts]]
+name = "port 는 model 과 common 만 쓴다"
+type = "forbidden"
+source_modules = ["package.port"]
+forbidden_modules = ["package.claude_utils"]
+
+[[tool.importlinter.contracts]]
+name = "model 과 claude_utils 는 다른 패키지를 쓰지 않는다"
+type = "forbidden"
+source_modules = ["package.model", "package.claude_utils"]
+forbidden_modules = ["package.common"]
+
+[tool.uv]
+package = true
